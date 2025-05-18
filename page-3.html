@@ -24,11 +24,19 @@
       font-size: 1.1rem;
       text-align: center;
     }
-    .cta {
+    form {
       text-align: center;
-      margin-top: 2.5rem;
+      margin-top: 2rem;
     }
-    .cta a {
+    input {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 70%;
+    }
+    .cta-button {
+      margin-top: 1.5rem;
       background-color: #EC4899;
       color: white;
       padding: 12px 24px;
@@ -37,6 +45,8 @@
       font-size: 1rem;
       font-weight: bold;
       display: inline-block;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -53,8 +63,17 @@
   <p>Plus… we're giving you a FREE bonus!</p>
   <p>You’ve come this far. Might as well go for the whole enchilada!</p>
 
-  <div class="cta">
-  <p><a href="https://buy.stripe.com/test_9B6aEPdvg80Ees362XfAc02">Spend $1 more. You've earned your Certificate of _______________.</a></p>
-  </div>
+  <form onsubmit="saveNameToLocalStorage()" action="https://buy.stripe.com/test_9B6aEPdvg80Ees362XfAc02" method="GET">
+    <label for="name">Enter your name for the certificate:</label><br><br>
+    <input type="text" id="name" name="name" placeholder="e.g., Bob" required><br><br>
+    <button class="cta-button" type="submit">Pay $1 and claim your Certificate of Satirical Commerce Impulse Buying</button>
+  </form>
+
+  <script>
+    function saveNameToLocalStorage() {
+      const name = document.getElementById("name").value;
+      localStorage.setItem("certificateName", name);
+    }
+  </script>
 </body>
 </html>
