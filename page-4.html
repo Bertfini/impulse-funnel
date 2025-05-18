@@ -17,17 +17,12 @@
       border-radius: 20px;
       box-shadow: 0 0 25px rgba(0,0,0,0.2);
     }
-   h1 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  text-transform: capitalize;
-  letter-spacing: 1px;
-  line-height: 1.4;
-}
-h1 .of {
-  text-transform: lowercase;
-}
-
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.4;
     }
     .line { margin: 1.2rem 0; }
     .small { font-size: 0.9rem; color: #666; }
@@ -54,32 +49,38 @@ h1 .of {
       color: #444;
     }
     .of { text-transform: lowercase; }
+  .certificate-container {
+    border: 15px double #5A4E3C;
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+  }
 </style>
 </head>
 <body>
-  <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
-  <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
+<div class="certificate-container">
+<h1Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
+  <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (IFSCAIBDSCD)</p>
 
   <div class="line">This is to certify that:</div>
-  <div id="certificate-name"><strong>[Your Name Here]</strong></div>
-  <div class="line">has spent actual money in an effort to stop spending money,</div>
-  <div class="line" style="margin-top: 0.6rem;">and has now been awarded this certificate in recognition of their:</div>
+  <div class="line" style="margin-top: 2.5rem;" id="certificate-name"><strong>[Your Name Here]</strong></div>
+  <div class="line" style="margin-top: 2.5rem;">has spent actual money in an effort to stop spending money,</div>
+  <div class="line">and has now been awarded this certificate in recognition of their:</div>
 
   <ul style="text-align: left; display: inline-block;">
     <li>💸 Persistent struggle with self-control</li>
     <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
     <li>🤯 Iron-level resistance to learning the obvious lesson</li>
   </ul>
+<div class="line" style="margin-top: 2.5rem;">🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong></div>
 
-  <div class="line">🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong></div>
-
-  <div class="line">
+  <div class="line" style="margin-top: 2.5rem;">
     <strong>Signed:</strong><br><br>
     Dr. Buy N. Large, PhD – Head of Regretful Purchases<br>
-    Clicky McSpendface – Chair of Digital Irony & Button Studies
+    Clicky McSpendface – Chair of Digital Irony & Button Studies<br><br>
   </div>
 
-  <div class="line small">
+  <div class="line small" style="margin-top: 2.5rem;">
     Issued: <span id="date"></span><br>
     Total Spent: $9.00 and your dignity
   </div>
@@ -111,5 +112,7 @@ h1 .of {
     const formatted = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
     document.getElementById("date").textContent = formatted;
   </script>
-</body>
+</div>
+<!-- End of certificate -->
+
 </html>
