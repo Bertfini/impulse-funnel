@@ -18,6 +18,11 @@
     }
 
     .certificate-container {
+      .pdf-mode {
+        background: white !important;
+        background-image: none !important;
+        box-shadow: none !important;
+        }
       background: url('certificate_border.png') no-repeat center center;
       background-size: contain;
       background-color: white;
@@ -186,16 +191,29 @@
 
     // PDF download
     function downloadPDF() {
-      const element = document.getElementById("certificate-wrapper");
-      const opt = {
-        margin:       0.5,
-        filename:     'satirical-certificate.pdf',
-        image:        { type: 'jpeg', quality: 0.98 },
-        html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-      };
-      html2pdf().set(opt).from(element).save();
-    }
+    const cert = document.getElementById("certificate");
+    const wrapper = document.getElementById("certificate-wrapper");
+
+    // Apply PDF-safe styling
+    cert.classList.add("pdf-mode");
+
+    const opt = {
+      margin: 0,
+      filename: 'satirical-certificate.pdf',
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff"
+      },
+      jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+    html2pdf().set(opt).from(wrapper).save().then(() => {
+      // Remove PDF-safe styling after save
+      cert.classList.remove("pdf-mode");
+    });
+  }
   </script>
 </body>
 </html>
