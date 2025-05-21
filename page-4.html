@@ -115,18 +115,17 @@
   </style>
 
 	<style media="print">
-	  body {
-	    background: white !important;
+	  body * {
+	    visibility: hidden;
 	  }
-	  body > * {
-	    display: none !important;
+	  #certificate-wrapper, #certificate-wrapper * {
+	    visibility: visible;
 	  }
 	  #certificate-wrapper {
-	    display: block !important;
-	    position: relative !important;
-	  }
-	  #certificate-wrapper * {
-	    display: block !important;
+	    position: absolute;
+	    left: 0;
+	    top: 0;
+	    width: 100%;
 	  }
 	  button {
 	    display: none !important;
@@ -162,7 +161,7 @@
 
       <div class="line" style="margin-top: 1rem;">
         <div style="margin-bottom: 2rem;">
-          <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px; margin-top: 0.3rem;"><br>		
+	  <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px; margin-top: 0.3rem;"><br>
           Dr. Buy N. Large, PhD<br>
           Head of Regretful Purchases<br>
         </div>
