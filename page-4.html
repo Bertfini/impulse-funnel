@@ -115,17 +115,18 @@
   </style>
 
 	<style media="print">
-	  body * {
-	    visibility: hidden;
+	  body {
+	    background: white !important;
 	  }
-	  #certificate-wrapper, #certificate-wrapper * {
-	    visibility: visible;
+	  body > * {
+	    display: none !important;
 	  }
 	  #certificate-wrapper {
-	    position: absolute;
-	    left: 0;
-	    top: 0;
-	    width: 100%;
+	    display: block !important;
+	    position: relative !important;
+	  }
+	  #certificate-wrapper * {
+	    display: block !important;
 	  }
 	  button {
 	    display: none !important;
@@ -161,15 +162,14 @@
 
       <div class="line" style="margin-top: 1rem;">
         <div style="margin-bottom: 2rem;">
-          <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px; margin-top: 0.3rem;"><br>		
           Dr. Buy N. Large, PhD<br>
           Head of Regretful Purchases<br>
-
+          <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px; margin-top: 0.3rem;"><br>
         </div>
         <div>
-          <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px; margin-top: 0.3rem;"><br>		
           Clicky McSpendface<br>
           Chair of Digital Irony & Button Studies<br>
+          <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px; margin-top: 0.3rem;"><br>
         </div>
       </div>
 
@@ -207,5 +207,6 @@
   document.getElementById("date").textContent = formatted;
 
 </script>
+
 </body>
 </html>
