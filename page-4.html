@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
   <title>Certified Supporter of Satirical Commerce</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     body {
       font-family: serif;
@@ -20,18 +22,36 @@
       background-size: contain;
       background-color: white;
       padding: 3rem 3rem; /* Add side padding to pull content in */
-      max-width: 80%;
-      margin: 2rem auto;
+      margin-bottom: 3rem;
       border: none;
       border-radius: 0;
       position: relative;
       overflow: hidden;
-      box-sizing: border-box;
-      transform: scale(0.95);
+    }
+
+    .certificate-container * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .watermark {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 5rem;
+      font-family: serif;
+      color: #bbb;
+      opacity: 0.1;
+      font-weight: bold;
+      pointer-events: none;
+      z-index: 0;
+      white-space: nowrap;
     }
 
     h1 {
       font-size: 2rem;
+      font-family: 'Cinzel Decorative', serif;
       margin-bottom: 0.25rem;
       text-transform: capitalize;
       letter-spacing: 1px;
@@ -63,7 +83,7 @@
       font-size: 2rem;
       font-weight: bold;
     }
-    
+
     button {
       margin-top: 1rem;
       padding: 12px 20px;
@@ -81,54 +101,67 @@
       color: #444;
     }
   </style>
+  <style media="print">
+  body {
+    background: white !important;
+  }
+  .certificate-container {
+    background: white !important;
+    box-shadow: none !important;
+    background-image: none !important;
+  }
+</style>
 </head>
 <body>
-  <div class="certificate-container">
+
+<div id="certificate-wrapper">
+  <div id="certificate" class="certificate-container">
+    <div class="watermark">SPEND-NOT</div>
+
     <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
     <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
 
     <div class="line">This is to certify that:</div>
 
-    <div class="line" id="certificate-name"><strong>[Your Name Here]</strong></div>
+    <div class="line" id="certificate-name" style="margin: 0.5rem 0;"><strong>[Your Name Here]</strong></div>
 
     <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
-    
+
     <ul style="text-align: left; display: inline-block;">
       <li>💸 Persistent struggle with self-control</li>
       <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
       <li>🤯 Iron-level resistance to learning the obvious lesson</li>
     </ul>
 
-    <div class="line" style="margin-top: 2.5rem;">
+    <div class="line" style="margin-top: 0.5rem;">
       🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
     </div>
 
-  <div class="line" style="margin-top: 2.5rem;"> 
+    <div class="line" style="margin-top: 1rem;">
+      <div style="margin-bottom: 2rem;">
+  <!-- Signature for Buy N. Large -->
+        <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px;"><br>
+        Dr. Buy N. Large, PhD<br>
+        Head of Regretful Purchases
+      </div>
+      <div>
+        <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px;"><br>
+        Clicky McSpendface<br>
+        Chair of Digital Irony & Button Studies
+      </div>
+    </div>
 
-  <div style="margin-bottom: 2.5rem;">
-   <!-- Signature for Buy N. Large -->
-<img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 50px;"><br>
-    Dr. Buy N. Large, PhD<br>
-    Head of Regretful Purchases
-  </div>
-
-  <div>
-   <!-- Signature for Clicky McSpendface -->
-<img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 50px;"><br>
-    Clicky McSpendface<br>
-    Chair of Digital Irony & Button Studies
-  </div>
-</div>
-
-    <div class="line small" style="margin-top: 2.5rem;">
+    <div class="line small" style="margin-top: 0.5rem;">
       Issued: <span id="date"></span><br>
       Total Spent: $9.00 and your dignity
     </div>
   </div>
+</div>
+  <button onclick="downloadPDF()">Download Certificate (PDF)</button>
 
   <h2>Want to join our private Facebook group?</h2>
   <p>It’s where impulse addicts like us hang out to recover… or make memes about trying.<br>
-     There are also a few kind souls who may actually assist you in stopping.</p>
+    There are also a few kind souls who may actually assist you in stopping.</p>
   <p>Drop your email and we’ll send you the invite link.</p>
 
   <form action="https://your-mailerlite-form-handler" method="POST">
@@ -143,13 +176,26 @@
     // Fill in name from localStorage
     const name = localStorage.getItem("certificateName");
     if (name) {
-      document.getElementById("certificate-name").innerHTML = `<strong>${name}</strong>`;
+      document.getElementById("certificate-name").innerHTML = <strong>${name}</strong>;
     }
 
     // Fill in current date
     const today = new Date();
     const formatted = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
     document.getElementById("date").textContent = formatted;
+
+    // PDF download
+    function downloadPDF() {
+      const element = document.getElementById("certificate-wrapper");
+      const opt = {
+        margin:       0.5,
+        filename:     'satirical-certificate.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+      html2pdf().set(opt).from(element).save();
+    }
   </script>
 </body>
 </html>
