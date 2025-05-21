@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
   <title>Certified Supporter of Satirical Commerce</title>
   <style>
     body {
@@ -16,33 +15,13 @@
       text-align: center;
     }
 
-    #certificate-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    #certificate {
-      position: relative;
+    .certificate-container {
       background-color: white;
       padding: 3rem;
-      box-sizing: border-box;
-    }
-
-    #certificate img.border-frame {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: fill;
-      z-index: 0;
-    }
-
-    .certificate-content {
+      margin-bottom: 3rem;
+      border: none;
+      border-radius: 0;
       position: relative;
-      z-index: 1;
     }
 
     .watermark {
@@ -62,7 +41,6 @@
 
     h1 {
       font-size: 2rem;
-      font-family: 'Cinzel Decorative', serif;
       margin-bottom: 0.25rem;
       text-transform: capitalize;
       letter-spacing: 1px;
@@ -82,18 +60,17 @@
       color: #666;
     }
 
-    #certificate-name {
-      font-size: 2rem;
-      font-weight: bold;
-      margin: 0.5rem 0;
-    }
-
     input[type="email"] {
       padding: 10px;
       width: 70%;
       margin-top: 1rem;
       border: 1px solid #ccc;
       border-radius: 6px;
+    }
+
+    #certificate-name {
+      font-size: 2rem;
+      font-weight: bold;
     }
 
     button {
@@ -112,100 +89,91 @@
       font-size: 0.85rem;
       color: #444;
     }
+
+    @media print {
+      body > * {
+        display: none !important;
+      }
+      .certificate-container {
+        display: block !important;
+        position: relative !important;
+      }
+      .certificate-container * {
+        display: block !important;
+      }
+      button {
+        display: none !important;
+      }
+    }
   </style>
-
-	<style media="print">
-	  body * {
-	    visibility: hidden;
-	  }
-	  #certificate-wrapper, #certificate-wrapper * {
-	    visibility: visible;
-	  }
-	  #certificate-wrapper {
-	    position: absolute;
-	    left: 0;
-	    top: 0;
-	    width: 100%;
-	  }
-	  button {
-	    display: none !important;
-	  }
-	</style>
-
 </head>
 <body>
+  <div class="certificate-container">
+    <img src="certificate_border.png" alt="Certificate Border" style="width: 100%; max-width: 700px;">
+    <div class="watermark">SPEND-NOT</div>
 
-<div id="certificate-wrapper">
-  <div id="certificate">
-    <img src="certificate_border.png" class="border-frame" alt="Border Frame">
-    <div class="certificate-content">
-      <div class="watermark">SPEND-NOT</div>
+    <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
+    <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
 
-      <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
-      <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
+    <div class="line">This is to certify that:</div>
 
-      <div class="line">This is to certify that:</div>
-      <div class="line" id="certificate-name"><strong>[Your Name Here]</strong></div>
+    <div class="line" id="certificate-name"><strong>[Your Name Here]</strong></div>
 
-      <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
+    <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
 
-      <ul style="text-align: left; display: inline-block;">
-        <li>💸 Persistent struggle with self-control</li>
-        <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
-        <li>🤯 Iron-level resistance to learning the obvious lesson</li>
-      </ul>
+    <ul style="text-align: left; display: inline-block;">
+      <li>💸 Persistent struggle with self-control</li>
+      <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
+      <li>🤯 Iron-level resistance to learning the obvious lesson</li>
+    </ul>
 
-      <div class="line" style="margin-top: 0.5rem;">
-        🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
+    <div class="line" style="margin-top: 2.5rem;">
+      🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
+    </div>
+
+    <div class="line" style="margin-top: 2.5rem;">
+      <div style="margin-bottom: 2.5rem;">
+        <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 50px;"><br>
+        Dr. Buy N. Large, PhD<br>
+        Head of Regretful Purchases
       </div>
-
-      <div class="line" style="margin-top: 1rem;">
-        <div style="margin-bottom: 2rem;">
-	  <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px; margin-top: 0.3rem;"><br>
-          Dr. Buy N. Large, PhD<br>
-          Head of Regretful Purchases<br>
-        </div>
-        <div>
-          <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px; margin-top: 0.3rem;"><br>		
-          Clicky McSpendface<br>
-          Chair of Digital Irony & Button Studies<br>
-        </div>
-      </div>
-
-      <div class="line small" style="margin-top: 0.5rem;">
-        Issued: <span id="date"></span><br>
-        Total Spent: $9.00 and your dignity
+      <div>
+        <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 50px;"><br>
+        Clicky McSpendface<br>
+        Chair of Digital Irony & Button Studies
       </div>
     </div>
+
+    <div class="line small" style="margin-top: 2.5rem;">
+      Issued: <span id="date"></span><br>
+      Total Spent: $9.00 and your dignity
+    </div>
   </div>
-</div>
 
-<button onclick="window.print()">Print Certificate</button>
+  <button onclick="window.print()">Print Certificate</button>
 
-<h2>Want to join our private Facebook group?</h2>
-<p>It’s where impulse addicts like us hang out to recover… or make memes about trying.<br>
-  There are also a few kind souls who may actually assist you in stopping.</p>
-<p>Drop your email and we’ll send you the invite link.</p>
+  <h2>Want to join our private Facebook group?</h2>
+  <p>It’s where impulse addicts like us hang out to recover… or make memes about trying.<br>
+    There are also a few kind souls who may actually assist you in stopping.</p>
+  <p>Drop your email and we’ll send you the invite link.</p>
 
-<form action="https://your-mailerlite-form-handler" method="POST">
-  <input type="email" name="email" placeholder="your@email.com" required>
-  <br>
-  <button type="submit">Get My Invite</button>
-</form>
+  <form action="https://your-mailerlite-form-handler" method="POST">
+    <input type="email" name="email" placeholder="your@email.com" required>
+    <br>
+    <button type="submit">Get My Invite</button>
+  </form>
 
-<p class="footer-note">No worries. We won’t sell your info. That would be... ironic.</p>
+  <p class="footer-note">No worries. We won’t sell your info. That would be... ironic.</p>
 
-<script>
-  const name = localStorage.getItem("certificateName");
-  if (name) {
-    document.getElementById("certificate-name").innerHTML = `<strong>${name}</strong>`;
-  }
+  <script>
+    const name = localStorage.getItem("certificateName");
+    if (name) {
+      document.getElementById("certificate-name").innerHTML = `<strong>${name}</strong>`;
+    }
 
-  const today = new Date();
-  const formatted = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
-  document.getElementById("date").textContent = formatted;
-
-</script>
-
+    const today = new Date();
+    const formatted = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById("date").textContent = formatted;
+  </script>
 </body>
 </html>
