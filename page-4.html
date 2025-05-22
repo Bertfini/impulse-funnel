@@ -16,15 +16,24 @@
     }
 
     .certificate-container {
-      background: url('certificate_border.png') no-repeat center center;
-      background-size: 100% 100%;
-      background-color: white;
+      background: white;
       padding: 5rem 3rem 4rem 3rem;
       margin-bottom: 3rem;
       border: none;
       border-radius: 0;
       position: relative;
       overflow: hidden;
+    }
+
+    .certificate-border {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('certificate_border.png') no-repeat center center;
+      background-size: cover;
+      z-index: 0;
     }
 
     .certificate-container * {
@@ -110,6 +119,11 @@
         left: 0;
         top: 0;
         width: 100%;
+        max-width: none;
+        background: white;
+      }
+      .certificate-border {
+        display: block !important;
       }
       button {
         display: none !important;
@@ -120,6 +134,7 @@
 <body>
 
   <div id="certificate" class="certificate-container">
+    <div class="certificate-border"></div>
     <div class="watermark">SPEND-NOT</div>
 
     <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
