@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Certified Supporter of Satirical Commerce</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     body {
-      font-family: 'Cinzel Decorative', serif;
+      font-family: serif;
       background: #F9F9F2;
       padding: 2rem;
       max-width: 700px;
@@ -18,12 +16,20 @@
     }
 
     .certificate-container {
+      background: url('certificate_border.png') no-repeat center center;
+      background-size: contain;
       background-color: white;
-      padding: 3rem;
+      padding: 3rem 3rem;
       margin-bottom: 3rem;
       border: none;
       border-radius: 0;
       position: relative;
+      overflow: hidden;
+    }
+
+    .certificate-container * {
+      position: relative;
+      z-index: 1;
     }
 
     .watermark {
@@ -91,17 +97,36 @@
       font-size: 0.85rem;
       color: #444;
     }
+
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .certificate-container, .certificate-container * {
+        visibility: visible;
+      }
+      .certificate-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+      button {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="certificate-container" id="certificate">
-    <img src="certificate_border.png" alt="Certificate Border" style="width: 100%; max-width: 700px;">
+
+  <div id="certificate" class="certificate-container">
     <div class="watermark">SPEND-NOT</div>
 
     <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
     <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
 
     <div class="line">This is to certify that:</div>
+
     <div class="line" id="certificate-name"><strong>[Your Name Here]</strong></div>
 
     <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
@@ -135,7 +160,7 @@
     </div>
   </div>
 
-  <button onclick="downloadPDF()">Download Certificate (PDF)</button>
+  <button onclick="window.print()">Print Certificate</button>
 
   <h2>Want to join our private Facebook group?</h2>
   <p>It’s where impulse addicts like us hang out to recover… or make memes about trying.<br>
@@ -159,41 +184,6 @@
     const today = new Date();
     const formatted = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
     document.getElementById("date").textContent = formatted;
-
-    function downloadPDF() {
-      const certificate = document.getElementById("certificate");
-      const border = document.querySelector("img[alt='Certificate Border']");
-      const watermark = document.querySelector(".watermark");
-
-      // Temporarily adjust styles for PDF rendering
-      if (border) border.style.zIndex = "auto";
-      if (watermark) {
-        watermark.style.position = "static";
-        watermark.style.transform = "none";
-        watermark.style.opacity = "0.1";
-      }
-
-      const opt = {
-        margin: 0,
-        filename: 'satirical-certificate.pdf',
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: {
-          scale: 2,
-          useCORS: true,
-          backgroundColor: "#ffffff"
-        },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
-      };
-
-      html2pdf().set(opt).from(certificate).save().then(() => {
-        if (border) border.style.zIndex = "0";
-        if (watermark) {
-          watermark.style.position = "absolute";
-          watermark.style.transform = "translate(-50%, -50%)";
-          watermark.style.opacity = "0.1";
-        }
-      });
-    }
   </script>
 </body>
 </html>
