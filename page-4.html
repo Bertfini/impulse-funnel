@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
   <title>Certified Supporter of Satirical Commerce</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     body {
       font-family: 'Cinzel Decorative', serif;
@@ -16,28 +17,13 @@
       text-align: center;
     }
 
-    #certificate-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 700px;
-      margin: auto;
-    }
-
-    #certificate-wrapper img.border-frame {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    #certificate {
-      position: relative;
-      z-index: 1;
+    .certificate-container {
+      background-color: white;
       padding: 3rem;
-      background: white;
+      margin-bottom: 3rem;
+      border: none;
+      border-radius: 0;
+      position: relative;
     }
 
     .watermark {
@@ -105,72 +91,51 @@
       font-size: 0.85rem;
       color: #444;
     }
-
-    @media print {
-      body > * {
-        display: none !important;
-      }
-      #certificate-wrapper {
-        display: block !important;
-        position: relative !important;
-        width: 100% !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
-      #certificate-wrapper * {
-        display: block !important;
-      }
-      button {
-        display: none !important;
-      }
-    }
   </style>
 </head>
 <body>
-  <div id="certificate-wrapper">
-    <img src="certificate_border.png" class="border-frame" alt="Certificate Border">
-    <div id="certificate">
-      <div class="watermark">SPEND-NOT</div>
+  <div class="certificate-container" id="certificate">
+    <img src="certificate_border.png" alt="Certificate Border" style="width: 100%; max-width: 700px;">
+    <div class="watermark">SPEND-NOT</div>
 
-      <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
-      <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
+    <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
+    <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
 
-      <div class="line">This is to certify that:</div>
-      <div class="line" id="certificate-name"><strong>[Your Name Here]</strong></div>
+    <div class="line">This is to certify that:</div>
+    <div class="line" id="certificate-name"><strong>[Your Name Here]</strong></div>
 
-      <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
+    <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
 
-      <ul style="text-align: left; display: inline-block;">
-        <li>💸 Persistent struggle with self-control</li>
-        <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
-        <li>🤯 Iron-level resistance to learning the obvious lesson</li>
-      </ul>
+    <ul style="text-align: left; display: inline-block;">
+      <li>💸 Persistent struggle with self-control</li>
+      <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
+      <li>🤯 Iron-level resistance to learning the obvious lesson</li>
+    </ul>
 
-      <div class="line" style="margin-top: 2.5rem;">
-        🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
+    <div class="line" style="margin-top: 2.5rem;">
+      🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
+    </div>
+
+    <div class="line" style="margin-top: 2.5rem;">
+      <div style="margin-bottom: 2.5rem;">
+        <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 50px;"><br>
+        Dr. Buy N. Large, PhD<br>
+        Head of Regretful Purchases
       </div>
-
-      <div class="line" style="margin-top: 2.5rem;">
-        <div style="margin-bottom: 2.5rem;">
-          <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 50px;"><br>
-          Dr. Buy N. Large, PhD<br>
-          Head of Regretful Purchases
-        </div>
-        <div>
-          <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 50px;"><br>
-          Clicky McSpendface<br>
-          Chair of Digital Irony & Button Studies
-        </div>
+      <div>
+        <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 50px;"><br>
+        Clicky McSpendface<br>
+        Chair of Digital Irony & Button Studies
       </div>
+    </div>
 
-      <div class="line small" style="margin-top: 2.5rem;">
-        Issued: <span id="date"></span><br>
-        Total Spent: $9.00 and your dignity
-      </div>
+    <div class="line small" style="margin-top: 2.5rem;">
+      Issued: <span id="date"></span><br>
+      Total Spent: $9.00 and your dignity
     </div>
   </div>
 
-  <button onclick="window.print()">Print Certificate</button>
+  <button onclick="downloadPDF()">Download Certificate (PDF)</button>
 
   <h2>Want to join our private Facebook group?</h2>
   <p>It’s where impulse addicts like us hang out to recover… or make memes about trying.<br>
@@ -194,6 +159,41 @@
     const today = new Date();
     const formatted = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
     document.getElementById("date").textContent = formatted;
+
+    function downloadPDF() {
+      const certificate = document.getElementById("certificate");
+      const border = document.querySelector("img[alt='Certificate Border']");
+      const watermark = document.querySelector(".watermark");
+
+      // Temporarily adjust styles for PDF rendering
+      if (border) border.style.zIndex = "auto";
+      if (watermark) {
+        watermark.style.position = "static";
+        watermark.style.transform = "none";
+        watermark.style.opacity = "0.1";
+      }
+
+      const opt = {
+        margin: 0,
+        filename: 'satirical-certificate.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true,
+          backgroundColor: "#ffffff"
+        },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+      };
+
+      html2pdf().set(opt).from(certificate).save().then(() => {
+        if (border) border.style.zIndex = "0";
+        if (watermark) {
+          watermark.style.position = "absolute";
+          watermark.style.transform = "translate(-50%, -50%)";
+          watermark.style.opacity = "0.1";
+        }
+      });
+    }
   </script>
 </body>
 </html>
