@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
   <title>Certified Supporter of Satirical Commerce</title>
   <style>
     body {
-      font-family: serif;
+      font-family: 'Cinzel Decorative', serif;
       background: #F9F9F2;
       padding: 2rem;
       max-width: 700px;
@@ -15,16 +16,28 @@
       text-align: center;
     }
 
-    .certificate-container {
-      background: url('certificate_border.png') no-repeat center center;
-      background-size: cover;
-      background-color: white;
-      padding: 4rem 3rem;
-      margin-bottom: 3rem;
-      border: none;
-      border-radius: 0;
+    #certificate-wrapper {
       position: relative;
-      box-sizing: border-box;
+      width: 100%;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    #certificate-wrapper img.border-frame {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    #certificate {
+      position: relative;
+      z-index: 1;
+      padding: 3rem;
+      background: white;
     }
 
     .watermark {
@@ -97,11 +110,14 @@
       body > * {
         display: none !important;
       }
-      .certificate-container {
+      #certificate-wrapper {
         display: block !important;
         position: relative !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
       }
-      .certificate-container * {
+      #certificate-wrapper * {
         display: block !important;
       }
       button {
@@ -111,45 +127,46 @@
   </style>
 </head>
 <body>
-  <div class="certificate-container">
-   
-    <div class="watermark">SPEND-NOT</div>
+  <div id="certificate-wrapper">
+    <img src="certificate_border.png" class="border-frame" alt="Certificate Border">
+    <div id="certificate">
+      <div class="watermark">SPEND-NOT</div>
 
-    <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
-    <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
+      <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
+      <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
 
-    <div class="line">This is to certify that:</div>
+      <div class="line">This is to certify that:</div>
+      <div class="line" id="certificate-name"><strong>[Your Name Here]</strong></div>
 
-    <div class="line" id="certificate-name"><strong>[Your Name Here]</strong></div>
+      <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
 
-    <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
+      <ul style="text-align: left; display: inline-block;">
+        <li>💸 Persistent struggle with self-control</li>
+        <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
+        <li>🤯 Iron-level resistance to learning the obvious lesson</li>
+      </ul>
 
-    <ul style="text-align: left; display: inline-block;">
-      <li>💸 Persistent struggle with self-control</li>
-      <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
-      <li>🤯 Iron-level resistance to learning the obvious lesson</li>
-    </ul>
-
-    <div class="line" style="margin-top: 2.5rem;">
-      🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
-    </div>
-
-    <div class="line" style="margin-top: 2.5rem;">
-      <div style="margin-bottom: 2.5rem;">
-        <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 50px;"><br>
-        Dr. Buy N. Large, PhD<br>
-        Head of Regretful Purchases
+      <div class="line" style="margin-top: 2.5rem;">
+        🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
       </div>
-      <div>
-        <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 50px;"><br>
-        Clicky McSpendface<br>
-        Chair of Digital Irony & Button Studies
-      </div>
-    </div>
 
-    <div class="line small" style="margin-top: 2.5rem;">
-      Issued: <span id="date"></span><br>
-      Total Spent: $9.00 and your dignity
+      <div class="line" style="margin-top: 2.5rem;">
+        <div style="margin-bottom: 2.5rem;">
+          <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 50px;"><br>
+          Dr. Buy N. Large, PhD<br>
+          Head of Regretful Purchases
+        </div>
+        <div>
+          <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 50px;"><br>
+          Clicky McSpendface<br>
+          Chair of Digital Irony & Button Studies
+        </div>
+      </div>
+
+      <div class="line small" style="margin-top: 2.5rem;">
+        Issued: <span id="date"></span><br>
+        Total Spent: $9.00 and your dignity
+      </div>
     </div>
   </div>
 
