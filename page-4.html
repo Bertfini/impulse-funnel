@@ -21,12 +21,15 @@
       background: url('certificate_border.png') no-repeat center center;
       background-size: contain;
       background-color: white;
-      padding: 5rem 3rem 4rem 3rem;
+      padding: 4rem 2rem 3rem 2rem;
       border: none;
       position: relative;
       overflow: hidden;
       -webkit-print-color-adjust: exact;
               print-color-adjust: exact;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .certificate-container * {
@@ -62,7 +65,7 @@
     }
 
     .line {
-      margin: 1.8rem 0;
+      margin: 1.5rem 0;
     }
 
     .small {
@@ -118,6 +121,10 @@
         background-color: white !important;
         -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
+        padding: 3.5rem 2rem 2rem 2rem !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
       }
       button {
         display: none !important;
