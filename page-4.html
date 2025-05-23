@@ -99,6 +99,18 @@
       color: #444;
     }
 
+    #print-reminder {
+      display: none;
+      background: #fff8dc;
+      border: 1px solid #f0c36d;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 0.95rem;
+    }
+
     @media print {
       body * {
         visibility: hidden;
@@ -136,8 +148,8 @@
 </head>
 <body>
 
-<!-- Reminder Box -->
-<div id="print-reminder" style="display:none; background:#fff8dc; border:1px solid #f0c36d; padding:1rem; margin-bottom:1rem; max-width:700px; margin-left:auto; margin-right:auto; font-size:0.95rem;">
+<!-- Print Reminder -->
+<div id="print-reminder">
   ⚠️ <strong>Before you print:</strong> 
   <ul style="text-align:left; margin:0.5rem 0 0 1rem; padding-left:1rem;">
     <li>Uncheck <strong>“Headers and footers”</strong> (or set to “Blank” in Firefox)</li>
@@ -220,7 +232,7 @@ There are also a few kind souls who may actually assist you in stopping.</p>
   });
   document.getElementById("date").textContent = formatted;
 
-  // Print instruction banner + print trigger
+  // Show print instructions, delay print, then hide message
   function showPrintReminder() {
     const reminder = document.getElementById("print-reminder");
     reminder.style.display = "block";
@@ -230,7 +242,7 @@ There are also a few kind souls who may actually assist you in stopping.</p>
       setTimeout(() => {
         reminder.style.display = "none";
       }, 1000);
-    }, 400);
+    }, 10000); // 10 seconds before print
   }
 </script>
 
