@@ -111,6 +111,11 @@
       font-size: 0.95rem;
     }
 
+    #print-reminder ul {
+      text-align: left;
+      padding-left: 1rem;
+    }
+
     #print-reminder button {
       margin-top: 1rem;
       background-color: #007bff;
@@ -158,9 +163,14 @@
 <!-- Print Reminder -->
 <div id="print-reminder">
   ⚠️ <strong>Before you print:</strong>
-  <ul style="text-align:left; margin:0.5rem 0 0 1rem; padding-left:1rem;">
-    <li>Uncheck <strong>“Headers and footers”</strong> (or set to “Blank” in Firefox)</li>
-    <li>Check <strong>“Background graphics”</strong> to include the border and watermark</li>
+  <ul>
+    <li><strong>Chrome & Edge:</strong> Click “More Settings” then:
+      <ul>
+        <li>Uncheck “Headers and footers”</li>
+        <li>Check “Background graphics”</li>
+      </ul>
+    </li>
+    <li><strong>Firefox:</strong> In the top right, set “Headers & footers” to “Blank” and enable “Print backgrounds”</li>
   </ul>
   <button onclick="continueToPrint()">Continue to Print</button>
 </div>
@@ -240,6 +250,7 @@ There are also a few kind souls who may actually assist you in stopping.</p>
 
   function showPrintReminder() {
     document.getElementById("print-reminder").style.display = "block";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   function continueToPrint() {
