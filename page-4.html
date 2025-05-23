@@ -38,12 +38,14 @@
       transform: translate(-50%, -50%);
       font-size: 5rem;
       font-family: serif;
-      color: #bbb;
-      opacity: 0.1;
+      color: #ccc;
+      opacity: 0.2;
       font-weight: bold;
       pointer-events: none;
       z-index: 0;
       white-space: nowrap;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
     h1 {
@@ -134,11 +136,8 @@
       }
 
       .certificate-container {
-        position: absolute;
-        left: 0;
-        top: 0;
+        position: relative;
         width: 100vw;
-        height: 100vh;
         padding: 4rem 3.5rem 3rem 3.5rem !important;
         background: url('certificate_border.png') no-repeat center center !important;
         background-size: 100% 100% !important;
@@ -232,7 +231,9 @@ There are also a few kind souls who may actually assist you in stopping.</p>
   <button type="submit">Get My Invite</button>
 </form>
 
-<p class="footer-note">No worries. We won’t sell your info. That would be... ironic.</p>
+<p class="footer-note">
+  No worries. We won’t sell your info. That would be... ironic.
+</p>
 
 <script>
   const name = localStorage.getItem("certificateName");
