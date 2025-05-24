@@ -27,25 +27,23 @@
       overflow: hidden;
     }
 
-    .certificate-container::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('spend_not_watermark_rotated.png') no-repeat center center;
-      background-size: 50% auto;
-      opacity: 0.08; /* ← Adjust watermark opacity here */
-      z-index: 0;
-      pointer-events: none;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
     .certificate-container * {
       position: relative;
       z-index: 1;
+    }
+
+    .watermark-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      opacity: 0.08;
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
 
     h1 {
@@ -148,23 +146,6 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
         box-sizing: border-box;
-        overflow: hidden;
-      }
-
-      .certificate-container::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: url('spend_not_watermark_rotated.png') no-repeat center center;
-        background-size: 50% auto;
-        opacity: 0.08;
-        z-index: 0;
-        pointer-events: none;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
       }
 
       button,
@@ -196,6 +177,7 @@
 
 <!-- Certificate -->
 <div class="certificate-container" id="certificate">
+  <img src="spend_not_watermark_rotated.png" alt="Watermark" class="watermark-img">
 
   <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
   <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
