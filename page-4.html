@@ -105,7 +105,7 @@
     }
 
     #print-reminder button {
-      margin-top: 1rem;
+      margin: 0.5rem 0.25rem 0 0.25rem;
       background-color: #007bff;
       color: white;
       font-size: 0.95rem;
@@ -175,11 +175,11 @@
     <li><strong>Firefox:</strong> In the top right, set “Headers & footers” to “Blank” and enable “Print backgrounds”</li>
   </ul>
   <button onclick="continueToPrint()">Continue to Print</button>
+  <button onclick="cancelPrintReminder()">Cancel</button>
 </div>
 
 <!-- Certificate -->
 <div class="certificate-container" id="certificate">
-
   <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
   <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
 
@@ -257,6 +257,11 @@ There are also a few kind souls who may actually assist you in stopping.</p>
   function continueToPrint() {
     window.print();
     document.getElementById("print-reminder").style.display = "none";
+  }
+
+  function cancelPrintReminder() {
+    document.getElementById("print-reminder").style.display = "none";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 </script>
 
