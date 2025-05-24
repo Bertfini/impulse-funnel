@@ -16,8 +16,10 @@
     }
 
     .certificate-container {
-      background: url('certificate_border.png') no-repeat center center;
-      background-size: 100% 100%;
+      background:
+        url('spend_not_watermark_rotated.png') no-repeat center center,
+        url('certificate_border.png') no-repeat center center;
+      background-size: 50% auto, 100% 100%;
       background-color: white;
       padding: 4rem 3.5rem 3rem 3.5rem;
       margin: 0 auto 3rem auto;
@@ -29,24 +31,6 @@
     .certificate-container * {
       position: relative;
       z-index: 1;
-    }
-
-    .watermark-img {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 50%;
-      opacity: 0.08;
-      transform: translate(-50%, -50%) rotate(-45deg);
-      pointer-events: none;
-      z-index: 0;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    .blue-ink-signature {
-      height: 30px;
-      filter: hue-rotate(200deg) saturate(4) brightness(1.2);
     }
 
     h1 {
@@ -143,8 +127,10 @@
         width: 100vw;
         height: 100vh;
         padding: 4rem 3.5rem 3rem 3.5rem !important;
-        background: url('certificate_border.png') no-repeat center center !important;
-        background-size: 100% 100% !important;
+        background:
+          url('spend_not_watermark_rotated.png') no-repeat center center,
+          url('certificate_border.png') no-repeat center center !important;
+        background-size: 50% auto, 100% 100% !important;
         background-color: white !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
@@ -180,7 +166,6 @@
 
 <!-- Certificate -->
 <div class="certificate-container" id="certificate">
-  <img src="spend_not_watermark_rotated.png" alt="Watermark" class="watermark-img">
 
   <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
   <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
@@ -203,12 +188,12 @@
 
   <div class="line" style="margin-top: 1rem;">
     <div style="margin-bottom: 2rem;">
-      <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" class="blue-ink-signature"><br>
+      <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px;"><br>
       Dr. Buy N. Large, PhD<br>
       Head of Regretful Purchases
     </div>
     <div>
-      <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" class="blue-ink-signature"><br>
+      <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px;"><br>
       Clicky McSpendface<br>
       Chair of Digital Irony & Button Studies
     </div>
