@@ -133,9 +133,11 @@
           url('certificate_border.png') no-repeat center center !important;
         background-size: 50% auto, 100% 100% !important;
         background-color: white !important;
+        box-sizing: border-box;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
-        box-sizing: border-box;
+        transform: scale(0.96);               /* Compress to fit on one page */
+        transform-origin: top center;
       }
 
       button,
