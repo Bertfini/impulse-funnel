@@ -9,21 +9,26 @@
     body {
       font-family: serif;
       background: #F9F9F2;
-      padding: 2rem;
       margin: 0;
+      padding: 2rem;
       color: #222;
       text-align: center;
+    }
+
+    .certificate-wrapper {
+      max-width: 750px;
+      margin: auto;
+      padding: 1rem;
+      background: white;
     }
 
     .certificate-container {
       background: url('certificate_border.png') no-repeat center center;
       background-size: 100% 100%;
       background-color: white;
-      padding: 4rem 3.5rem 3rem 3.5rem;
-      margin: 0 auto 3rem auto;
-      max-width: 700px;
-      position: relative;
+      padding: 3rem;
       box-sizing: border-box;
+      position: relative;
     }
 
     .certificate-container * {
@@ -33,17 +38,18 @@
 
     .watermark {
       position: absolute;
-      top: 45%;
+      top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 5rem;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-size: 6rem;
       font-family: serif;
-      color: #ccc;
-      opacity: 0.2;
+      color: #bbb;
+      opacity: 0.07;
       font-weight: bold;
       pointer-events: none;
       z-index: 0;
       white-space: nowrap;
+      user-select: none;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
@@ -51,10 +57,9 @@
     h1 {
       font-size: 2rem;
       font-family: 'Cinzel Decorative', serif;
-      margin-bottom: 0.25rem;
       text-transform: capitalize;
-      letter-spacing: 1px;
       line-height: 1.4;
+      margin: 0 0 1rem;
     }
 
     .of {
@@ -62,7 +67,7 @@
     }
 
     .line {
-      margin: 1.8rem 0;
+      margin: 1rem 0;
     }
 
     .small {
@@ -101,57 +106,27 @@
       color: #444;
     }
 
-    #print-reminder {
-      display: none;
-      background: #fff8dc;
-      border: 1px solid #f0c36d;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 0.95rem;
-    }
-
-    #print-reminder ul {
-      text-align: left;
-      padding-left: 1rem;
-    }
-
-    #print-reminder button {
-      margin-top: 1rem;
-      background-color: #007bff;
-      color: white;
-      font-size: 0.95rem;
-    }
-
     @media print {
-      body * {
-        visibility: hidden;
+      body {
+        background: white !important;
       }
 
-      .certificate-container,
-      .certificate-container * {
-        visibility: visible;
+      .certificate-wrapper {
+        padding: 0;
+        margin: 0;
       }
 
       .certificate-container {
-        position: relative;
-        width: 100vw;
-        padding: 4rem 3.5rem 3rem 3.5rem !important;
         background: url('certificate_border.png') no-repeat center center !important;
         background-size: 100% 100% !important;
-        background-color: white !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-        box-sizing: border-box;
+        page-break-inside: avoid;
       }
 
       button,
       form,
-      h2,
       .footer-note,
-      #print-reminder {
+      h2,
+      p:not(.small) {
         display: none !important;
       }
     }
@@ -159,106 +134,74 @@
 </head>
 <body>
 
-<!-- Print Reminder -->
-<div id="print-reminder">
-  ⚠️ <strong>Before you print:</strong>
-  <ul>
-    <li><strong>Chrome & Edge:</strong> Click “More Settings” then:
-      <ul>
-        <li>Uncheck “Headers and footers”</li>
-        <li>Check “Background graphics”</li>
+  <div class="certificate-wrapper">
+    <div id="certificate" class="certificate-container">
+      <div class="watermark">SPEND-NOT</div>
+
+      <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
+      <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
+
+      <div class="line">This is to certify that:</div>
+      <div class="line" id="certificate-name"><strong>[Your Name Here]</strong></div>
+      <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
+
+      <ul style="text-align: left; display: inline-block;">
+        <li>💸 Persistent struggle with self-control</li>
+        <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
+        <li>🤯 Iron-level resistance to learning the obvious lesson</li>
       </ul>
-    </li>
-    <li><strong>Firefox:</strong> In the top right, set “Headers & footers” to “Blank” and enable “Print backgrounds”</li>
-  </ul>
-  <button onclick="continueToPrint()">Continue to Print</button>
-</div>
 
-<!-- Certificate -->
-<div class="certificate-container" id="certificate">
-  <div class="watermark">SPEND-NOT</div>
+      <div class="line" style="margin-top: 1rem;">
+        🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
+      </div>
 
-  <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
-  <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division, Satirical Commerce Department (The IFSCAIBDSCD)</p>
+      <div class="line" style="margin-top: 1rem;">
+        <div style="margin-bottom: 1.5rem;">
+          <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 40px;"><br>
+          Dr. Buy N. Large, PhD<br>
+          Head of Regretful Purchases
+        </div>
+        <div>
+          <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 40px;"><br>
+          Clicky McSpendface<br>
+          Chair of Digital Irony & Button Studies
+        </div>
+      </div>
 
-  <div class="line">This is to certify that:</div>
-
-  <div id="certificate-name"><strong>[Your Name Here]</strong></div>
-
-  <div class="line">has spent actual money in an effort to stop spending money, and has now been awarded this certificate in recognition of their:</div>
-
-  <ul style="text-align: left; display: inline-block;">
-    <li>💸 Persistent struggle with self-control</li>
-    <li>🛍️ Willingness to purchase multiple digital pages with no value</li>
-    <li>🤯 Iron-level resistance to learning the obvious lesson</li>
-  </ul>
-
-  <div class="line" style="margin-top: 0.5rem;">
-    🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
-  </div>
-
-  <div class="line" style="margin-top: 1rem;">
-    <div style="margin-bottom: 2rem;">
-      <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px;"><br>
-      Dr. Buy N. Large, PhD<br>
-      Head of Regretful Purchases
-    </div>
-    <div>
-      <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px;"><br>
-      Clicky McSpendface<br>
-      Chair of Digital Irony & Button Studies
+      <div class="line small">
+        Issued: <span id="date"></span><br>
+        Total Spent: $9.00 and your dignity
+      </div>
     </div>
   </div>
 
-  <div class="line small" style="margin-top: 0.5rem;">
-    Issued: <span id="date"></span><br>
-    Total Spent: $9.00 and your dignity
-  </div>
-</div>
+  <button onclick="window.print()">Print Certificate</button>
 
-<!-- Print Button -->
-<button onclick="showPrintReminder()">Print Certificate</button>
+  <h2>Want to join our private Facebook group?</h2>
+  <p>It’s where impulse addicts like us hang out to recover… or make memes about trying.<br>
+     There are also a few kind souls who may actually assist you in stopping.</p>
+  <p>Drop your email and we’ll send you the invite link.</p>
 
-<!-- Facebook Invite Section -->
-<h2>Want to join our private Facebook group?</h2>
-<p>It’s where impulse addicts like us hang out to recover… or make memes about trying.<br>
-There are also a few kind souls who may actually assist you in stopping.</p>
-<p>Drop your email and we’ll send you the invite link.</p>
+  <form action="https://your-mailerlite-form-handler" method="POST">
+    <input type="email" name="email" placeholder="your@email.com" required>
+    <br>
+    <button type="submit">Get My Invite</button>
+  </form>
 
-<form action="https://your-mailerlite-form-handler" method="POST">
-  <input type="email" name="email" placeholder="your@email.com" required>
-  <br>
-  <button type="submit">Get My Invite</button>
-</form>
+  <p class="footer-note">No worries. We won’t sell your info. That would be... ironic.</p>
 
-<p class="footer-note">
-  No worries. We won’t sell your info. That would be... ironic.
-</p>
+  <script>
+    // Fill in name from localStorage
+    const name = localStorage.getItem("certificateName");
+    if (name) {
+      document.getElementById("certificate-name").innerHTML = `<strong>${name}</strong>`;
+    }
 
-<script>
-  const name = localStorage.getItem("certificateName");
-  if (name) {
-    document.getElementById("certificate-name").innerHTML = `<strong>${name}</strong>`;
-  }
-
-  const today = new Date();
-  const formatted = today.toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-  document.getElementById("date").textContent = formatted;
-
-  function showPrintReminder() {
-    document.getElementById("print-reminder").style.display = "block";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-
-  function continueToPrint() {
-    window.print();
-    document.getElementById("print-reminder").style.display = "none";
-  }
-</script>
+    // Fill in current date
+    const today = new Date();
+    const formatted = today.toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' });
+    document.getElementById("date").textContent = formatted;
+  </script>
 
 </body>
 </html>
