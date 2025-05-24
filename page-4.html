@@ -33,18 +33,18 @@
     }
 
     .watermark-image {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 60%;
-      opacity: 0.06;
-      transform: translate(-50%, -50%) rotate(-45deg);
-      z-index: 0;
-      pointer-events: none;
-      user-select: none;
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  max-width: 500px;
+  opacity: 0.2;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+  border: 2px dashed red;
+}
 
     h1 {
       font-size: 2rem;
