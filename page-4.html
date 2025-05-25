@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -100,11 +99,6 @@
       font-size: 0.95rem;
     }
 
-    #print-reminder ul {
-      text-align: left;
-      padding-left: 1rem;
-    }
-
     #print-reminder button {
       margin: 0.5rem 0.25rem 0 0.25rem;
       background-color: #007bff;
@@ -151,6 +145,11 @@
         margin-bottom: 2rem !important;
       }
 
+      .certificate-container .small:last-of-type {
+        margin-bottom: 1.2rem !important;
+        display: block;
+      }
+
       button,
       form,
       h2,
@@ -163,6 +162,7 @@
 </head>
 <body>
 
+<!-- Print Reminder -->
 <div id="print-reminder">
   ⚠️ <strong>Before you print:</strong><br>
   In the print preview settings, find the setting labeled <strong>“Headers and footers”</strong> and make sure it’s <strong>unchecked</strong>.<br>
@@ -171,6 +171,7 @@
   <button onclick="cancelPrintReminder()">Cancel</button>
 </div>
 
+<!-- Certificate -->
 <div class="certificate-container" id="certificate">
 
   <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
@@ -217,8 +218,10 @@
   </div>
 </div>
 
+<!-- Print Button -->
 <button onclick="showPrintReminder()">Print Certificate</button>
 
+<!-- Facebook Invite Section -->
 <h2>Want to join our private Facebook group?</h2>
 <p>It’s where impulse addicts like us hang out to recover… or make memes about trying.<br>
 There are also a few kind souls who may actually assist you in stopping.</p>
