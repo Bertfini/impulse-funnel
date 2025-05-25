@@ -21,10 +21,9 @@
         url('certificate_border.png') no-repeat center center;
       background-size: 50% auto, 100% 100%;
       background-color: white;
-      padding: 4rem 3.5rem 2rem 3.5rem;
-      margin: 0 auto 2rem auto;
+      padding: 4rem 3.5rem 3rem 3.5rem;
+      margin: 0 auto 3rem auto;
       max-width: 700px;
-      height: auto;
       position: relative;
       box-sizing: border-box;
     }
@@ -99,8 +98,13 @@
       font-size: 0.95rem;
     }
 
+    #print-reminder ul {
+      text-align: left;
+      padding-left: 1rem;
+    }
+
     #print-reminder button {
-      margin: 0.5rem 0.25rem 0 0.25rem;
+      margin-top: 1rem;
       background-color: #007bff;
       color: white;
       font-size: 0.95rem;
@@ -122,32 +126,15 @@
         top: 0;
         width: 100vw;
         height: 100vh;
-        padding: 4rem 3.5rem 2rem 3.5rem !important;
+        padding: 4rem 3.5rem 3rem 3.5rem !important;
         background:
           url('spend_not_watermark_rotated.png') no-repeat center center,
           url('certificate_border.png') no-repeat center center !important;
         background-size: 50% auto, 100% 100% !important;
         background-color: white !important;
-        box-sizing: border-box;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
-        transform: scale(0.96);
-        transform-origin: top center;
-      }
-
-      #certificate-name {
-        margin-top: 1.5rem !important;
-        margin-bottom: 1.5rem !important;
-      }
-
-      .line {
-        margin-top: 2rem !important;
-        margin-bottom: 2rem !important;
-      }
-
-      .certificate-container .small:last-of-type {
-        margin-bottom: 2rem !important;
-        display: block;
+        box-sizing: border-box;
       }
 
       button,
@@ -158,34 +145,36 @@
         display: none !important;
       }
     }
+
+    @media print {
+      @-moz-document url-prefix() {
+        .certificate-container .small:last-of-type {
+          margin-bottom: 1.2rem !important;
+          display: block;
+        }
+      }
+    }
   </style>
 </head>
 <body>
 
+<!-- Print Reminder -->
 <div id="print-reminder">
-  ⚠️ <strong>Before you print:</strong><br>
-  In the print preview settings, find the setting labeled <strong>“Headers and footers”</strong> and make sure it’s <strong>unchecked</strong>.<br>
-  The location of this setting may vary depending on your browser and printer.<br><br>
+  ⚠️ <strong>Before you print:</strong>
+  <p>In the print preview settings, find the setting labeled “Headers and footers” and make sure it’s unchecked. The location of this setting may vary depending on your browser and printer.</p>
   <button onclick="continueToPrint()">Continue to Print</button>
-  <button onclick="cancelPrintReminder()">Cancel</button>
+  <button onclick="cancelPrint()">Cancel</button>
 </div>
 
+<!-- Certificate -->
 <div class="certificate-container" id="certificate">
-
   <h1>Certified Supporter<br><span class="of">of</span><br>Satirical Commerce</h1>
-  <p class="small">
-    Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division,<br>
-    Satirical Commerce Department (The IFSCAIBDSCD)
-  </p>
+  <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division,<br>Satirical Commerce Department (The IFSCAIBDSCD)</p>
 
   <div class="line">This is to certify that:</div>
-
   <div id="certificate-name"><strong>[Your Name Here]</strong></div>
 
-  <div class="line">
-    has spent actual money in an effort to stop spending money,<br>
-    and has now been awarded this certificate in recognition of their:
-  </div>
+  <div class="line">has spent actual money in an effort to stop spending money,<br>and has now been awarded this certificate in recognition of their:</div>
 
   <ul style="text-align: left; display: inline-block;">
     <li>💸 Persistent struggle with self-control</li>
@@ -216,8 +205,10 @@
   </div>
 </div>
 
+<!-- Print Button -->
 <button onclick="showPrintReminder()">Print Certificate</button>
 
+<!-- Facebook Invite Section -->
 <h2>Want to join our private Facebook group?</h2>
 <p>It’s where impulse addicts like us hang out to recover… or make memes about trying.<br>
 There are also a few kind souls who may actually assist you in stopping.</p>
@@ -255,9 +246,8 @@ There are also a few kind souls who may actually assist you in stopping.</p>
     document.getElementById("print-reminder").style.display = "none";
   }
 
-  function cancelPrintReminder() {
+  function cancelPrint() {
     document.getElementById("print-reminder").style.display = "none";
-    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 </script>
 
