@@ -48,6 +48,83 @@
       border: none;
       cursor: pointer;
     }
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .lightbox-content {
+      background: white;
+      padding: 2rem;
+      text-align: center;
+      max-width: 450px;
+      width: 90%;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: scaleIn 0.4s ease-in-out;
+    }
+    @keyframes scaleIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+    .share-buttons button {
+      margin: 0.5rem;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .twitter-button {
+      background-color: #1da1f2;
+      color: white;
+    }
+    .facebook-button {
+      background-color: #4267B2;
+      color: white;
+    }
+    .reddit-button {
+      background-color: #FF5700;
+      color: white;
+    }
+    .linkedin-button {
+      background-color: #0077b5;
+      color: white;
+    }
+    .tiktok-button {
+      background-color: #010101;
+      color: white;
+    }
+    .unlocked {
+      margin-top: 1.5rem;
+      background-color: #000;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 6px;
+      display: none;
+      text-decoration: none;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -63,17 +140,88 @@
   <p>Plus… we're giving you a FREE bonus!</p>
   <p>You’ve come this far. Might as well go for the whole enchilada!</p>
 
-  <form onsubmit="saveNameToLocalStorage()" action="https://buy.stripe.com/test_9B6aEPdvg80Ees362XfAc02" method="GET">
+  <form onsubmit="event.preventDefault(); saveNameToLocalStorage(); showLightbox();">
     <label for="name">Enter the name you would like printed on the certificate:</label><br><br>
     <input type="text" id="name" name="name" placeholder="e.g., Bob" required><br><br>
     <button class="cta-button" type="submit">Claim your Certificate!</button>
   </form>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <span class="close-btn" onclick="closeLightbox()">&times;</span>
+      <h2>Choose your path:</h2>
+      <p>Pay $1 or share this site 3 times to unlock your certificate.</p>
+      <p><strong>Shares completed: <span id="share-count">0</span>/3</strong></p>
+
+      <div class="share-buttons">
+        <button class="twitter-button" onclick="shareTwitter()">🐦 Twitter</button>
+        <button class="facebook-button" onclick="shareFacebook()">📘 Facebook</button>
+        <button class="reddit-button" onclick="shareReddit()">👽 Reddit</button>
+        <button class="linkedin-button" onclick="shareLinkedIn()">💼 LinkedIn</button>
+        <button class="tiktok-button" onclick="shareTikTok()">🎵 TikTok</button>
+      </div>
+
+      <a href="page-4.html" id="unlocked-btn" class="unlocked">Okay, I Shared. Let Me In!</a>
+      <p style="margin-top: 1rem;">Or just <a href="https://buy.stripe.com/test_9B6aEPdvg80Ees362XfAc02">pay $1 here</a> and skip the guilt.</p>
+    </div>
+  </div>
+
   <script>
+    let shares = 0;
+
     function saveNameToLocalStorage() {
       const name = document.getElementById("name").value;
       localStorage.setItem("certificateName", name);
     }
-   </script>
+
+    function showLightbox() {
+      document.getElementById("lightbox").style.display = "flex";
+    }
+
+    function closeLightbox() {
+      document.getElementById("lightbox").style.display = "none";
+    }
+
+    function incrementShares() {
+      shares++;
+      document.getElementById("share-count").textContent = shares;
+      if (shares >= 3) {
+        document.getElementById("unlocked-btn").style.display = "inline-block";
+      }
+    }
+
+    function shareTwitter() {
+      const url = encodeURIComponent(window.location.origin + "/index.html");
+      const text = encodeURIComponent("I just impulse bought a certificate telling me to stop impulse buying. Check it out:");
+      window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+      incrementShares();
+    }
+
+    function shareFacebook() {
+      const url = encodeURIComponent(window.location.origin + "/index.html");
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+      incrementShares();
+    }
+
+    function shareReddit() {
+      const url = encodeURIComponent(window.location.origin + "/index.html");
+      window.open(`https://www.reddit.com/submit?url=${url}&title=Impulse+Buying+Recovery+Program+Certificate`, '_blank');
+      incrementShares();
+    }
+
+    function shareLinkedIn() {
+      const url = encodeURIComponent(window.location.origin + "/index.html");
+      const title = encodeURIComponent("Impulse Buying Recovery Certificate");
+      const summary = encodeURIComponent("I bought a satirical certificate telling me to stop buying things. It’s absurd. It’s genius.");
+      window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}`, '_blank');
+      incrementShares();
+    }
+
+    function shareTikTok() {
+      alert("TikTok doesn't allow direct share links like other platforms. But we believe you. (You can still click this to earn a share.)");
+      incrementShares();
+    }
+  </script>
 </body>
 </html>
