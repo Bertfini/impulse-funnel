@@ -112,8 +112,9 @@
       color: white;
     }
     .tiktok-button {
-      background-color: #010101;
+      background: linear-gradient(to right, #25f4ee, #000000, #fe2c55);
       color: white;
+      font-weight: bold;
     }
     .unlocked {
       margin-top: 1.5rem;
@@ -124,6 +125,15 @@
       display: none;
       text-decoration: none;
       font-weight: bold;
+    }
+    canvas.confetti-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 10000;
     }
   </style>
 </head>
@@ -155,11 +165,11 @@
       <p><strong>Shares completed: <span id="share-count">0</span>/3</strong></p>
 
       <div class="share-buttons">
-        <button class="twitter-button" onclick="shareTwitter()">🐦 Twitter</button>
-        <button class="facebook-button" onclick="shareFacebook()">📘 Facebook</button>
-        <button class="reddit-button" onclick="shareReddit()">👽 Reddit</button>
-        <button class="linkedin-button" onclick="shareLinkedIn()">💼 LinkedIn</button>
-        <button class="tiktok-button" onclick="shareTikTok()">🎵 TikTok</button>
+        <button class="twitter-button" onclick="shareTwitter(this)">🐦 Twitter</button>
+        <button class="facebook-button" onclick="shareFacebook(this)">📘 Facebook</button>
+        <button class="reddit-button" onclick="shareReddit(this)">👽 Reddit</button>
+        <button class="linkedin-button" onclick="shareLinkedIn(this)">💼 LinkedIn</button>
+        <button class="tiktok-button" onclick="shareTikTok(this)">🎵 TikTok</button>
       </div>
 
       <a href="page-4.html" id="unlocked-btn" class="unlocked">Okay, I Shared. Let Me In!</a>
@@ -167,6 +177,10 @@
     </div>
   </div>
 
+  <canvas id="confetti" class="confetti-canvas"></canvas>
+  <audio id="ding" src="https://assets.mixkit.co/active_storage/sfx/1695/1695-preview.mp3" preload="auto"></audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <script>
     let shares = 0;
 
@@ -186,41 +200,58 @@
     function incrementShares() {
       shares++;
       document.getElementById("share-count").textContent = shares;
+      document.getElementById("ding").play();
       if (shares >= 3) {
         document.getElementById("unlocked-btn").style.display = "inline-block";
+        confetti({
+          particleCount: 150,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
       }
     }
 
-    function shareTwitter() {
+    function disableButton(btn) {
+      btn.disabled = true;
+      btn.style.opacity = 0.6;
+      btn.style.cursor = 'not-allowed';
+    }
+
+    function shareTwitter(btn) {
       const url = encodeURIComponent(window.location.origin + "/index.html");
       const text = encodeURIComponent("I just impulse bought a certificate telling me to stop impulse buying. Check it out:");
       window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
       incrementShares();
+      disableButton(btn);
     }
 
-    function shareFacebook() {
+    function shareFacebook(btn) {
       const url = encodeURIComponent(window.location.origin + "/index.html");
       window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
       incrementShares();
+      disableButton(btn);
     }
 
-    function shareReddit() {
+    function shareReddit(btn) {
       const url = encodeURIComponent(window.location.origin + "/index.html");
       window.open(`https://www.reddit.com/submit?url=${url}&title=Impulse+Buying+Recovery+Program+Certificate`, '_blank');
       incrementShares();
+      disableButton(btn);
     }
 
-    function shareLinkedIn() {
+    function shareLinkedIn(btn) {
       const url = encodeURIComponent(window.location.origin + "/index.html");
       const title = encodeURIComponent("Impulse Buying Recovery Certificate");
       const summary = encodeURIComponent("I bought a satirical certificate telling me to stop buying things. It’s absurd. It’s genius.");
       window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=${title}&summary=${summary}`, '_blank');
       incrementShares();
+      disableButton(btn);
     }
 
-    function shareTikTok() {
+    function shareTikTok(btn) {
       alert("TikTok doesn't allow direct share links like other platforms. But we believe you. (You can still click this to earn a share.)");
       incrementShares();
+      disableButton(btn);
     }
   </script>
 </body>
