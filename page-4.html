@@ -7,48 +7,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      background: #f9f9f2;
       font-family: serif;
-    }
-
-    .seal-layer {
-      position: absolute;
-      bottom: 4.5rem;
-      right: 3rem;
-      width: 180px;
-      height: 180px;
-      background: url('Official_Seal_2.png') no-repeat center center;
-      background-size: contain;
-      z-index: 0;
-      pointer-events: none;
+      background: #F9F9F2;
+      margin: 0;
+      padding: 2rem;
+      color: #222;
+      text-align: center;
     }
 
     .certificate-container {
-      position: relative;
       background:
+        url('seal.png') no-repeat right bottom,
         url('spend_not_watermark_rotated.png') no-repeat center center,
         url('certificate_border.png') no-repeat center center;
       background-size:
+        160px auto,
         50% auto,
         100% 100%;
       background-color: white;
-      max-width: 700px;
-      margin: 3rem auto;
       padding: 4rem 3.5rem 3rem 3.5rem;
+      max-width: 700px;
+      margin: 0 auto;
       box-sizing: border-box;
-      text-align: center;
-      z-index: 1;
+      position: relative;
     }
 
     h1 {
       font-size: 2rem;
       font-family: 'Cinzel Decorative', serif;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
       text-transform: capitalize;
-      letter-spacing: 1px;
-      line-height: 1.4;
     }
 
     .line {
@@ -66,107 +54,64 @@
       margin: 0.5rem 0;
     }
 
-    ul {
-      text-align: left;
-      display: inline-block;
-      margin-top: 0.5rem;
-    }
-
     @media print {
       body * {
         visibility: hidden;
       }
-
-      .certificate-container, .seal-layer, .certificate-container * {
+      .certificate-container,
+      .certificate-container * {
         visibility: visible;
       }
-
       .certificate-container {
         position: absolute;
-        top: 0;
         left: 0;
+        top: 0;
         width: 100vw;
         height: 100vh;
-        padding: 4rem 3.5rem 3rem 3.5rem;
-        background:
-          url('spend_not_watermark_rotated.png') no-repeat center center,
-          url('certificate_border.png') no-repeat center center;
-        background-size: 50% auto, 100% 100%;
-        background-color: white;
+        padding: 4rem 3.5rem 3rem 3.5rem !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
-        box-sizing: border-box;
-      }
-
-      .seal-layer {
-        position: absolute;
-        bottom: 4.5rem;
-        right: 3rem;
-        width: 180px;
-        height: 180px;
-        background: url('Official_Seal_2.png') no-repeat center center;
-        background-size: contain;
-        z-index: 0;
       }
     }
   </style>
 </head>
 <body>
+  <div class="certificate-container">
+    <h1>Certificate of<br>Satirical Commerce<br>Impulse Buying</h1>
+    <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division,<br>Satirical Commerce Department (The IFSCAIBDSCD)</p>
 
-<!-- Seal behind certificate -->
-<div class="seal-layer"></div>
+    <div class="line">This is to certify that:</div>
+    <div id="certificate-name"><strong>Bob</strong></div>
 
-<!-- Certificate -->
-<div class="certificate-container">
-  <h1>Certificate of<br>Satirical Commerce<br>Impulse Buying</h1>
-  <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division,<br>Satirical Commerce Department (The IFSCAIBDSCD)</p>
+    <div class="line">has spent actual money in an effort to stop spending money,<br>and has now been awarded this certificate in recognition of their:</div>
 
-  <div class="line">This is to certify that:</div>
-  <div id="certificate-name"><strong>[Your Name Here]</strong></div>
+    <ul style="text-align: left; display: inline-block;">
+      <li>💸 Persistent struggle with self-control.</li>
+      <li>🛍️ Knowingly exchanged money for a reminder not to.</li>
+      <li>🤯 Iron-level resistance to learning the obvious lesson.</li>
+    </ul>
 
-  <div class="line">has spent actual money in an effort to stop spending money,<br>and has now been awarded this certificate in recognition of their:</div>
-
-  <ul>
-    <li>💸 Persistent struggle with self-control.</li>
-    <li>🛍️ Knowingly exchanged money for a reminder not to.</li>
-    <li>🤯 Iron-level resistance to learning the obvious lesson.</li>
-  </ul>
-
-  <div class="line" style="margin-top: 0.5rem;">
-    🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
-  </div>
-
-  <div class="line" style="margin-top: 1rem;">
-    <div style="margin-bottom: 2rem;">
-      <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px;"><br>
-      Dr. Buy N. Large, PhD<br>
-      IFSCAIBDSCD Founder & Head of Regretful Purchases
+    <div class="line" style="margin-top: 0.5rem;">
+      🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
     </div>
-    <div>
-      <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px;"><br>
-      Clicky McSpendface<br>
-      Chair of Digital Irony & Button Studies
+
+    <div class="line" style="margin-top: 1rem;">
+      <div style="margin-bottom: 2rem;">
+        <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px;"><br>
+        Dr. Buy N. Large, PhD<br>
+        IFSCAIBDSCD Founder & Head of Regretful Purchases
+      </div>
+      <div>
+        <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px;"><br>
+        Clicky McSpendface<br>
+        Chair of Digital Irony & Button Studies
+      </div>
+    </div>
+
+    <div class="line small">
+      Issued: June 22, 2025<br>
+      Total Spent: $9.00 and your dignity
     </div>
   </div>
-
-  <div class="line small">
-    Issued: <span id="date"></span><br>
-    Total Spent: $9.00 and your dignity
-  </div>
-</div>
-
-<script>
-  const name = localStorage.getItem("certificateName") || "[Your Name Here]";
-  document.getElementById("certificate-name").textContent = name;
-
-  const today = new Date();
-  const formatted = today.toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-  document.getElementById("date").textContent = formatted;
-</script>
-
 </body>
 </html>
