@@ -2,41 +2,62 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Certificate of Satirical Commerce Impulse Buying</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: serif;
       background: #F9F9F2;
-      margin: 0;
       padding: 2rem;
+      margin: 0;
       color: #222;
       text-align: center;
     }
 
     .certificate-container {
-      background:
-        url('seal.png') no-repeat right bottom,
-        url('spend_not_watermark_rotated.png') no-repeat center center,
-        url('certificate_border.png') no-repeat center center;
-      background-size:
-        160px auto,
-        50% auto,
-        100% 100%;
-      background-color: white;
-      padding: 4rem 3.5rem 3rem 3.5rem;
-      max-width: 700px;
-      margin: 0 auto;
-      box-sizing: border-box;
+  background:
+    url('spend_not_watermark_rotated.png') no-repeat center center,
+    url('Official_Seal_2.png') no-repeat right 2.7rem bottom 4.3rem,
+    url('certificate_border.png') no-repeat center center;
+  background-size:
+    50% auto,
+    180px 180px,
+    100% 100%;
+  background-color: white;
+  padding: 4rem 3.5rem 3rem 3.5rem;
+  margin: 0 auto 3rem auto;
+  max-width: 700px;
+  width: 100%;
+  position: relative;
+  box-sizing: border-box;
+}
+
+    .certificate-container::before {
+      content: "";
+      position: absolute;
+      bottom: 4.5rem;
+      right: 3rem;
+      width: 180px;
+      height: 180px;
+      background: url('Official_Seal_2.png') no-repeat center center;
+      background-size: contain;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .certificate-container * {
       position: relative;
+      z-index: 1;
     }
 
     h1 {
       font-size: 2rem;
       font-family: 'Cinzel Decorative', serif;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
       text-transform: capitalize;
+      letter-spacing: 1px;
+      line-height: 1.4;
     }
 
     .line {
@@ -55,22 +76,34 @@
     }
 
     @media print {
-      body * {
-        visibility: hidden;
-      }
-      .certificate-container,
-      .certificate-container * {
-        visibility: visible;
-      }
       .certificate-container {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100vw;
-        height: 100vh;
-        padding: 4rem 3.5rem 3rem 3.5rem !important;
+        background:
+          url('spend_not_watermark_rotated.png') no-repeat center center,
+          url('certificate_border.png') no-repeat center center !important;
+        background-size:
+          50% auto,
+          100% 100% !important;
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
+        transform: scale(0.96);
+        transform-origin: top center;
+      }
+
+      .certificate-container::before {
+        content: "";
+        position: absolute;
+        bottom: 4.5rem;
+        right: 3rem;
+        width: 180px;
+        height: 180px;
+        background: url('Official_Seal_2.png') no-repeat center center;
+        background-size: contain;
+        z-index: 0;
+      }
+
+      .certificate-container .small:last-of-type {
+        margin-bottom: 1.2rem !important;
+        display: block;
       }
     }
   </style>
@@ -82,7 +115,6 @@
 
     <div class="line">This is to certify that:</div>
     <div id="certificate-name"><strong>Bob</strong></div>
-
     <div class="line">has spent actual money in an effort to stop spending money,<br>and has now been awarded this certificate in recognition of their:</div>
 
     <ul style="text-align: left; display: inline-block;">
@@ -109,9 +141,15 @@
     </div>
 
     <div class="line small">
-      Issued: June 22, 2025<br>
+      Issued: <span id="date"></span><br>
       Total Spent: $9.00 and your dignity
     </div>
   </div>
+  <script>
+    const today = new Date();
+    document.getElementById("date").textContent = today.toLocaleDateString(undefined, {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+  </script>
 </body>
 </html>
