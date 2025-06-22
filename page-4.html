@@ -17,57 +17,42 @@
 
     .certificate-wrapper {
       position: relative;
-      max-width: 700px;
+      width: 700px;
       margin: 0 auto 3rem auto;
+    }
+
+    .certificate-border {
+      background: url('certificate_border.png') no-repeat center center;
+      background-size: 100% 100%;
+      padding: 4rem 3.5rem 3rem 3.5rem;
       background-color: white;
       box-sizing: border-box;
+      position: relative;
+      z-index: 3; /* top layer */
     }
 
-    /* Watermark */
-    .certificate-wrapper::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 50%;
-      height: auto;
-      transform: translate(-50%, -50%);
-      background: url('spend_not_watermark_rotated.png') no-repeat center center;
-      background-size: contain;
-      opacity: 0.15;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* Certificate Content */
     .certificate-content {
       position: relative;
       z-index: 1;
-      padding: 4rem 3.5rem 3rem 3.5rem;
     }
 
-    .seal {
+    .certificate-watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+      opacity: 0.08;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .certificate-seal {
       position: absolute;
       bottom: 4.5rem;
       right: 3rem;
       width: 180px;
-      height: 180px;
-      background: url('Official_Seal_2.png') no-repeat center center;
-      background-size: contain;
       z-index: 2;
-      pointer-events: none;
-    }
-
-    .border {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('certificate_border.png') no-repeat center center;
-      background-size: 100% 100%;
-      z-index: 3;
-      pointer-events: none;
     }
 
     h1 {
@@ -94,127 +79,82 @@
       margin: 0.5rem 0;
     }
 
-    ul {
-      text-align: left;
-      display: inline-block;
-      margin: 1rem 0;
-    }
-
     @media print {
-      body * {
-        visibility: hidden;
-      }
-      .certificate-wrapper, .certificate-wrapper * {
-        visibility: visible;
-      }
-
-      .certificate-wrapper {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        transform: scale(0.96);
-        transform-origin: top center;
+      body {
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
 
-      .certificate-content {
-        padding: 4rem 3.5rem 3rem 3.5rem !important;
-      }
-
-      .certificate-content .small:last-of-type {
-        margin-bottom: 1.2rem !important;
-        display: block;
+      .certificate-wrapper {
+        transform: scale(0.96);
+        transform-origin: top center;
       }
     }
   </style>
 </head>
 <body>
+  <div class="certificate-wrapper">
+    <div class="certificate-border">
+      <img src="spend_not_watermark_rotated.png" alt="Watermark" class="certificate-watermark">
+      <img src="Official_Seal_2.png" alt="Seal" class="certificate-seal">
+      <div class="certificate-content">
+        <h1>Certificate of<br>Satirical Commerce<br>Impulse Buying</h1>
+        <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division,<br>Satirical Commerce Department (The IFSCAIBDSCD)</p>
 
-<div class="certificate-wrapper">
-  <div class="certificate-content">
-    <h1>Certificate of<br>Satirical Commerce<br>Impulse Buying</h1>
-    <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division,<br>Satirical Commerce Department (The IFSCAIBDSCD)</p>
+        <div class="line">This is to certify that:</div>
+        <div id="certificate-name"><strong>Bob</strong></div>
+        <div class="line">has spent actual money in an effort to stop spending money,<br>and has now been awarded this certificate in recognition of their:</div>
 
-    <div class="line">This is to certify that:</div>
-    <div id="certificate-name"><strong>Bob</strong></div>
+        <ul style="text-align: left; display: inline-block;">
+          <li>💸 Persistent struggle with self-control.</li>
+          <li>🛍️ Knowingly exchanged money for a reminder not to.</li>
+          <li>🤯 Iron-level resistance to learning the obvious lesson.</li>
+        </ul>
 
-    <div class="line">has spent actual money in an effort to stop spending money,<br>and has now been awarded this certificate in recognition of their:</div>
+        <div class="line" style="margin-top: 0.5rem;">
+          🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
+        </div>
 
-    <ul>
-      <li>💸 Persistent struggle with self-control.</li>
-      <li>🛍️ Knowingly exchanged money for a reminder not to.</li>
-      <li>🤯 Iron-level resistance to learning the obvious lesson.</li>
-    </ul>
+        <div class="line" style="margin-top: 1rem;">
+          <div style="margin-bottom: 2rem;">
+            <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px;"><br>
+            Dr. Buy N. Large, PhD<br>
+            IFSCAIBDSCD Founder & Head of Regretful Purchases
+          </div>
+          <div>
+            <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px;"><br>
+            Clicky McSpendface<br>
+            Chair of Digital Irony & Button Studies
+          </div>
+        </div>
 
-    <div class="line" style="margin-top: 0.5rem;">
-      🎓 Rank Achieved: <strong>Certified Impulse Buyer – Satirical Level 5</strong>
-    </div>
-
-    <div class="line" style="margin-top: 1rem;">
-      <div style="margin-bottom: 2rem;">
-        <img src="buy_n_large_signature.png" alt="Signature of Buy N. Large" style="height: 30px;"><br>
-        Dr. Buy N. Large, PhD<br>
-        IFSCAIBDSCD Founder & Head of Regretful Purchases
+        <div class="line small">
+          Issued: <span id="date"></span><br>
+          Total Spent: $9.00 and your dignity
+        </div>
       </div>
-      <div>
-        <img src="clicky_mcspendface_signature.png" alt="Signature of Clicky McSpendface" style="height: 30px;"><br>
-        Clicky McSpendface<br>
-        Chair of Digital Irony & Button Studies
-      </div>
-    </div>
-
-    <div class="line small">
-      Issued: <span id="date"></span><br>
-      Total Spent: $9.00 and your dignity
     </div>
   </div>
 
-  <!-- Seal and Border layers -->
-  <div class="seal"></div>
-  <div class="border"></div>
-</div>
+  <div style="margin-top: 2rem;">
+    <p class="small">📱 If this looks weird on your phone, don’t worry. It looks important when printed.</p>
+    <p><strong>Print it. Frame it.<br>(Just don’t buy a frame for it.)</strong></p>
+    <p><a href="#">Print Certificate</a></p>
+    <p>
+      Thank you for participating in the noble (and slightly absurd) journey to<br>
+      curb online impulse buying.<br>
+      We hope this certificate marks the beginning of your recovery… or at least gives you pause<br>
+      next time you’re one click away from buying another novelty toaster.
+    </p>
+    <p><strong>But seriously…<br>Stop Buying Stuff!!!</strong></p>
+    <p class="small">Still confused? <a href="/support.html">Contact the Satirical Commerce Department</a></p>
+  </div>
 
-<!-- Additional content below certificate -->
-<p class="small" style="margin-top: -2rem; margin-bottom: 3rem;">
-  📱 If this looks weird on your phone, don’t worry. It looks important when printed.
-</p>
-
-<p style="margin-top: -1rem; font-size: 0.95rem;">
-  Print it. Frame it.<br>
-  (Just don’t buy a frame for it.)
-</p>
-
-<!-- Footer content -->
-<button onclick="window.print()">Print Certificate</button>
-
-<p style="margin-top: 2rem; font-size: 1rem; max-width: 600px; margin: auto;">
-  Thank you for participating in the noble (and slightly absurd) journey to<br>
-  curb online impulse buying.
-</p>
-
-<p style="max-width: 600px; margin: auto;">
-  We hope this certificate marks the beginning of your recovery... or at least gives you pause next time you're one click away from buying another novelty toaster.
-</p>
-
-<p style="font-weight: bold; font-size: 1.1rem;">
-  But seriously…<br><span style="font-size: 1.4rem;">Stop Buying Stuff!!!</span>
-</p>
-
-<p class="footer-note">
-  Still confused? <a href="/support.html">Contact the Satirical Commerce Department</a>
-</p>
-
-<script>
-  const today = new Date();
-  document.getElementById("date").textContent = today.toLocaleDateString(undefined, {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric'
-  });
-</script>
-
+  <script>
+    const today = new Date();
+    document.getElementById("date").textContent = today.toLocaleDateString(undefined, {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+  </script>
 </body>
 </html>
