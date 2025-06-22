@@ -28,7 +28,7 @@
       padding: 4rem 3.5rem 3rem 3.5rem;
       background-color: white;
       position: relative;
-      z-index: 4;
+      z-index: 1;
     }
 
     .certificate-watermark {
@@ -54,7 +54,7 @@
 
     .certificate-border * {
       position: relative;
-      z-index: 5;
+      z-index: 4;
     }
 
     h1 {
@@ -160,9 +160,9 @@
   <button onclick="document.getElementById('print-reminder').style.display='none'">Cancel</button>
 </div>
 <div class="certificate-wrapper">
-  <div class="certificate-watermark"></div>
-  <img src="official_seal.png" alt="Seal" class="certificate-seal" />
   <div class="certificate-border">
+    <div class="certificate-watermark"></div>
+    <img src="official_seal.png" alt="Seal" class="certificate-seal" />
     <h1>Certificate of<br>Satirical Commerce<br>Impulse Buying</h1>
     <p class="small">Issued by the Internet Financial Self-Control Agency, Impulse Buyers Division,<br>Satirical Commerce Department (The IFSCAIBDSCD)</p>
     <div class="line">This is to certify that:</div>
