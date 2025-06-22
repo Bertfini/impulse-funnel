@@ -23,13 +23,12 @@
       background: url('certificate_border - Edited.png') no-repeat center center;
       background-size: 100% 100%;
       background-color: white;
-      padding: 4rem 3.5rem 3rem 3.5rem;
-      box-sizing: border-box;
     }
 
     .certificate-content {
       position: relative;
-      z-index: 2;
+      padding: 4rem 3.5rem 3rem 3.5rem;
+      z-index: 1;
     }
 
     .certificate-watermark {
@@ -40,7 +39,7 @@
       height: 100%;
       background: url('spend_not_watermark_rotated.png') no-repeat center center;
       background-size: 50% auto;
-      z-index: 3;
+      z-index: 2;
       pointer-events: none;
     }
 
@@ -50,7 +49,13 @@
       right: 2.25rem;
       width: 200px;
       height: auto;
-      z-index: 4;
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    .certificate-content * {
+      position: relative;
+      z-index: 5;
     }
 
     h1 {
@@ -77,50 +82,6 @@
       margin: 0.5rem 0;
     }
 
-    input[type="email"] {
-      padding: 10px;
-      width: 70%;
-      margin-top: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-
-    button {
-      margin-top: 1rem;
-      padding: 12px 20px;
-      font-weight: bold;
-      background: #000;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .footer-note {
-      margin-top: 2rem;
-      font-size: 0.85rem;
-      color: #444;
-    }
-
-    #print-reminder {
-      display: none;
-      background: #fff8dc;
-      border: 1px solid #f0c36d;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
-      font-size: 0.95rem;
-    }
-
-    #print-reminder button {
-      margin-top: 1rem;
-      background-color: #007bff;
-      color: white;
-      font-size: 0.95rem;
-    }
-
     @media print {
       body * {
         visibility: hidden;
@@ -138,23 +99,10 @@
         -webkit-print-color-adjust: exact;
         print-color-adjust: exact;
       }
-      button,
-      form,
-      h2,
-      .footer-note,
-      #print-reminder {
-        display: none !important;
-      }
     }
   </style>
 </head>
 <body>
-<div id="print-reminder">
-  ⚠️ <strong>Before you print:</strong>
-  <p>In the print preview settings, find the setting labeled “Headers and footers” and make sure it’s unchecked.</p>
-  <button onclick="continueToPrint()">Continue to Print</button>
-  <button onclick="document.getElementById('print-reminder').style.display='none'">Cancel</button>
-</div>
 <div class="certificate-wrapper">
   <div class="certificate-content">
     <h1>Certificate of<br>Satirical Commerce<br>Impulse Buying</h1>
@@ -188,34 +136,8 @@
     </div>
   </div>
   <div class="certificate-watermark"></div>
-  <img src="official_seal.png" alt="Seal" class="certificate-seal" />
+  <img src="d51d88ba-27e0-4518-93ad-fde4bef5ed88.png" alt="Seal" class="certificate-seal" />
 </div>
-<p class="small" style="margin-top: -2rem; margin-bottom: 3rem; text-align: center; max-width: 600px; margin-left: auto; margin-right: auto;">
-  📱 If this looks weird on your phone, don’t worry. It looks important when printed.
-</p>
-<p style="margin-top: -1rem; font-size: 0.95rem; text-align: center;">
-  Print it. Frame it.<br>
-  (Just don’t buy a frame for it.)
-</p>
-<button onclick="showPrintReminder()">Print Certificate</button>
-<h2>BONUS!!! We have a Facebook Fan Page.</h2>
-<p>It’s where impulse addicts like us hang out to recover … or make memes about our efforts.<br>You may also find a few kind souls providing some guidance.</p>
-<p>Drop your email and we’ll immediayely send you the link.</p>
-<p>Now go check it out!.</p>
-<form action="https://your-mailerlite-form-handler" method="POST">
-  <input type="email" name="email" placeholder="your@email.com" required>
-  <br>
-  <button type="submit">Get Your Invite</button>
-</form>
-<div style="margin-top: 2rem; text-align: center; font-size: 1rem; max-width: 600px; margin-left: auto; margin-right: auto; color: #333;">
-  <p><strong>Thank you for participating in the noble (and slightly absurd) journey to<br>curb online impulse buying.</strong></p>
-  <p>We sincerely hope this certificate marks the beginning of your recovery... or at least gives you pause next time you're one click away from buying another novelty toaster.</p>
-  <p>If you get the link to our Facebook Fan Page, welcome aboard — It's where memes, mutual support, and mildly judgmental humor await.</p>
-  <p style="margin-top: 1rem; font-weight: bold; font-size: 1.1rem;">But seriously…<br><span style="font-size: 1.4rem;">Stop Buying Stuff!!!</span></p>
-</div>
-<p class="footer-note">
-  Still confused? <a href="/support.html">Contact the Satirical Commerce Department</a>
-</p>
 <script>
   const name = localStorage.getItem("certificateName");
   if (name) {
@@ -225,14 +147,6 @@
   document.getElementById("date").textContent = today.toLocaleDateString(undefined, {
     year: 'numeric', month: 'long', day: 'numeric'
   });
-  function showPrintReminder() {
-    document.getElementById("print-reminder").style.display = "block";
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-  function continueToPrint() {
-    window.print();
-    document.getElementById("print-reminder").style.display = "none";
-  }
 </script>
 </body>
 </html>
